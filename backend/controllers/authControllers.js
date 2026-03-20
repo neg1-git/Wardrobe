@@ -1,6 +1,7 @@
 const db = require('../config/db')
 const bcrypt=require('bcrypt')
 const jwtGenerator=require('../utils/jwtGenerator')
+const Authorize=require('../middlewares/authorisation')
 
 const register=async(req,res)=>{
   const {name, email, password}=req.body
