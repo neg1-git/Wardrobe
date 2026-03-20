@@ -1,7 +1,6 @@
 const db = require('../config/db')
 const bcrypt=require('bcrypt')
 const jwtGenerator=require('../utils/jwtGenerator')
-const Authorize=require('../middlewares/authorisation')
 
 const register=async(req,res)=>{
   const {name, email, password}=req.body
@@ -45,7 +44,7 @@ const login= async(req,res)=>{
     return res.status(400).json({ success:false,msg:'INCORRECT PASSWORD' });
   }
   else{
-    const token = jwtGenerator(result.rows[0].user_id);
+    const token = jwtGenerator(result.rows[0].id);
     return res.status(200).json({success:true,msg:'SIGNED IN',token:token})
   }
 }

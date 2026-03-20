@@ -10,6 +10,7 @@ const Authorize= async(req,res,next)=>{
     }
 
     const payload=jwt.verify(jwtToken,process.env.JWT_SECRET)
+    console.log("Payload:",payload)
 
     req.user=payload.user //THIS REQ.USER IS USED TO THEN USE THIS USERID TO GET STUFF FROM SQL WHEN REQ 
     next();
