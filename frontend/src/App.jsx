@@ -1,10 +1,22 @@
 import React from 'react'
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
+import Login from './components/Login'
+import Register from './components/Register'
+import Layout from './components/Layout'
 
 const App = () => {
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+    <Route path='/' element={<Layout/>}>
+      <Route path='register' element={<Register/>}/>
+      <Route path='login' element={<Login/>}/>
+    </Route>
+  )
+  ) 
+
   return (
-    <div className='flex'>
-      <h1 className='p-2 bg-amber-400'>MAKE LOG IN YOURSELF</h1>
-    </div>
+    <RouterProvider router={router}/>
   )
 }
 
