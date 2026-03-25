@@ -16,6 +16,8 @@ const Login = () => {
       console.log(res.data.token)
       localStorage.setItem("token",res.data.token)
 
+      nav('/wardrobe')
+
     } catch (error) {
       console.log(error)
     }
