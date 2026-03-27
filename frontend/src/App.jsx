@@ -5,6 +5,7 @@ import Register from './components/Register'
 import Layout from './components/Layout'
 import Wardrobe from './components/Wardrobe'
 import Additems from './components/Additems'
+import UpdateItems from './components/Updateitems'
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
       <Route path='login' element={<Login/>}/>
       <Route path='wardrobe' element={<Wardrobe/>}/>
       <Route path='add-items' element={<Additems/>}/>
+      <Route path="/update/:id" element={<UpdateItems/>} />
     </Route>
   )
   ) 

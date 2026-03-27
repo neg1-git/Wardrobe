@@ -48,6 +48,9 @@ const Wardrobe = () => {
             <p key={item.color}>{item.color}</p>
             <p key={item.category}>{item.category}</p>
             <button onClick={()=>handleDelete(item.id)} className='bg-white cursor-pointer'>delete</button>
+            <button onClick={() => nav(`/update/${item.id}`)}>
+      Update
+            </button>
         </div>
         ))}
       </div>
