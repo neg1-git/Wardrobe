@@ -10,13 +10,16 @@ const AddOutfits = () => {
 
   const handleAdd=async()=>{
     try {
-      const res=axios.post('http://localhost:5000/outfit/create',{
+      const res=await axios.post('http://localhost:5000/outfit/create',{
         name
       },{headers: {
   token:localStorage.getItem("token")
 }})
+    const outfitId = res.data.data.id;
+    console.log(outfitId);
+    nav(`/add-outfit-items/${outfitId}`)
     } catch (error) {
-      console.log(error)
+      console.log(error.response?.data || error.message)
     }
   }
   return (
