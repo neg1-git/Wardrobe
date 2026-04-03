@@ -14,7 +14,8 @@ const addOutfit=async(req,res)=>{
 
 const addItems= async (req,res)=>{
   const user_id=req.user;
-  const {outfit_id,clothing_item_id}=req.body;  
+  const {outfit_id,clothing_item_id}=req.body;
+  // clothing_item_id is an array [id1,id2...]
   try {
     
     const check1= await db.query('select user_id from outfits where id=$1',[outfit_id])
