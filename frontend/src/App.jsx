@@ -8,6 +8,7 @@ import Additems from './components/Additems'
 import UpdateItems from './components/Updateitems'
 import AddOutfits from './components/AddOutfits'
 import AddItemsToOutfits from './components/AddItemsToOutfits'
+import ViewOutfits from './components/Outfits'
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
       <Route path='register' element={<Register/>}/>
       <Route path='login' element={<Login/>}/>
       <Route path='wardrobe' element={<Wardrobe/>}/>
+      <Route path='outfits' element={<ViewOutfits/>}/>
       <Route path='add-items' element={<Additems/>}/>
       <Route path='add-outfits' element={<AddOutfits/>}/>
       <Route path='add-outfit-items/:id' element={<AddItemsToOutfits/>}/>

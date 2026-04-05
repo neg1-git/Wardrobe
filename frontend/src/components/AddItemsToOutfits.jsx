@@ -2,11 +2,13 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const AddItemsToOutfits = () => {
   const {id}=useParams()
   const outfit_id=id
+
+  const nav = useNavigate('')
 
   const[clothing_item_id,setClothing_item_id]=useState([])
   
@@ -49,6 +51,7 @@ const AddItemsToOutfits = () => {
       token: localStorage.getItem("token")
     }})
     console.log(clothing_item_id);
+    nav('/outfits')
     } catch (error) {
       console.log(error.response?.data || error.message)
     }
