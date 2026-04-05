@@ -33,7 +33,7 @@ const AddOutfits = () => {
           <button className='bg-white px-5 hover:scale-105 text-center hover:bg-red-400' onClick={handleAdd}>Add Outfit</button>
         </div>
         <div>
-          <a className='text-blue-800 hover:cursor-pointer text-sm' onClick={()=>nav('/login')}>login</a>
+          <a className='text-blue-800 hover:cursor-pointer text-sm' onClick={()=>nav('/outfits')}>outfits</a>
         </div>
       </div>
       
