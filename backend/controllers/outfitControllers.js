@@ -79,9 +79,34 @@ try {
 }
 }
 
+const markAsWorn= async (req,res)=>{
+  const user_id=req.user
+  const {outfit_id}= req.params
+
+  try {
+
+  const check=await db.query('select user_id from outfits where id=$1',[outfit_id]);
+
+  if(!check.rows[0] || user_id!=check.rows[0].user_id){
+    return res.status(400).json({success:false,msg:'OUTFIT DOESNT BELONG TO THIS USER ID'})
+  }
+
+  const result1 = await db.query('update outfits SET wear_count=wear_count+1, last_worn_date = NOW() WHERE id=$1 returning *',[outfit_id])
+
+  const result2= await db.query('insert into outfit_wear_history(outfit_id) values($1) returning *',[outfit_id])
+
+  return res.status(200).json({success:true,data:result1.rows[0]})
+    
+  } catch (error) {
+  console.log(error)
+  return res.status(500).json({success:false,msg:"ERROR"})
+  }
+}
+
 module.exports={
   addOutfit,
   addItems,
   getOutfits,
-  deleteOutfit
+  deleteOutfit,
+  markAsWorn
 }
