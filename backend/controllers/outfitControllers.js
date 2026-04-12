@@ -119,11 +119,46 @@ const getInsights=async (req,res)=>{
   }
 }
 
+const isFavorite = async (req,res)=>{
+  const user_id=req.user
+  const {outfit_id}= req.params
+  try {
+
+    const check=await db.query('select user_id from outfits where id=$1',[outfit_id]);
+
+  if(!check.rows[0] || user_id!=check.rows[0].user_id){
+    return res.status(400).json({success:false,msg:'OUTFIT DOESNT BELONG TO THIS USER ID'})
+  }
+
+  const result = await db.query('update outfits set is_favorite= NOT is_favorite where id=$1 returning *',[outfit_id])
+
+  return res.status(200).json({success:true,data:result.rows[0]})
+    
+  } catch (error) {
+  console.log(error)
+  return res.status(500).json({success:false,msg:"ERROR"})
+  }
+}
+
+const getRecommendations= async (req,res)=>{
+  const user_id=req.user
+  try {
+    const result=await db.query(`select * from outfits where user_id=$1 AND (last_worn_date IS NULL OR last_worn_date < NOW() - INTERVAL '3 days') order by is_favorite desc, wear_count asc limit 3`,[user_id])
+
+    return res.status(200).json({success:true,data:result.rows})
+  } catch (error) {
+  console.log(error)
+  return res.status(500).json({success:false,msg:"ERROR"})
+  }
+}
+
 module.exports={
   addOutfit,
   addItems,
   getOutfits,
   deleteOutfit,
   markAsWorn,
-  getInsights
+  getInsights,
+  isFavorite,
+  getRecommendations
 }
