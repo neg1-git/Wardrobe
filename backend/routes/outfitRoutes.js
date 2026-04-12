@@ -5,7 +5,8 @@ const {
   addItems,
   getOutfits,
   deleteOutfit,
-  markAsWorn
+  markAsWorn,
+  getInsights
  } = require('../controllers/outfitControllers')
 
 const { Authorize } = require('../middlewares/authorisation')
@@ -16,5 +17,6 @@ router.route('/add').post(Authorize,addItems)
 router.route('/get-outfits').get(Authorize,getOutfits)
 router.route('/delete/:outfit_id').delete(Authorize,deleteOutfit)
 router.route('/:outfit_id/wear').post(Authorize,markAsWorn)
+router.route('/insights').get(Authorize,getInsights)
 
 module.exports = router

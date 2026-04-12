@@ -103,10 +103,27 @@ const markAsWorn= async (req,res)=>{
   }
 }
 
+const getInsights=async (req,res)=>{
+  const user_id=req.user;
+  try {
+    const mostWorn= await db.query('select * from outfits where user_id=$1 order by wear_count desc limit 1',[user_id])
+    const leastWorn= await db.query('select * from outfits where user_id=$1 AND wear_count > 0 order by wear_count',[user_id])
+    const recentlyWorn= await db.query('select * from outfits where user_id=$1 order by last_worn_date desc LIMIT 3',[user_id])
+    const neglected = await db.query(`SELECT * FROM outfits WHERE user_id = $1 AND (last_worn_date IS NULL OR last_worn_date < NOW() - INTERVAL '7 days')LIMIT 3`,[user_id])
+
+    return res.status(200).json({success:true,mostWorn:mostWorn.rows[0],leastWorn:leastWorn.rows[0],recentlyWorn:recentlyWorn.rows,neglected: neglected.rows})
+    
+  } catch (error) {
+  console.log(error)
+  return res.status(500).json({success:false,msg:"ERROR"})
+  }
+}
+
 module.exports={
   addOutfit,
   addItems,
   getOutfits,
   deleteOutfit,
-  markAsWorn
+  markAsWorn,
+  getInsights
 }
