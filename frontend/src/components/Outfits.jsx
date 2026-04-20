@@ -16,6 +16,7 @@ const ViewOutfits = () => {
       })
 
       setData(res.data.data)
+      console.log(res.data.data)
 
     } catch (error) {
       console.log(error.response?.data || error.message)
@@ -35,6 +36,23 @@ const ViewOutfits = () => {
     }
   }
 
+  const handleWorn= async(id)=>{
+    try {
+      const res = await axios.post(`http://localhost:5000/outfit/${id}/wear`,
+        {},
+        {
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+
+      getOutfits();
+      
+    } catch (error) {
+      console.log(error.response?.data || error.message)
+    }
+  }
+
   useEffect(() => {
     getOutfits()
   }, [])
@@ -45,8 +63,9 @@ const ViewOutfits = () => {
       {data.map((item, index) => (
         <div key={index} className='p-2 border mb-2'>
           <p><b>Outfit:</b> {item.name}</p>
-          <p><b>Clothing:</b> {item.clothing_item_id}</p>
+          <div><b>Clothing:</b> {item.clothes.map((cloth)=>(<p>{cloth}</p>))}</div>
           <button className='bg-red-600 px-2 py-1 rounded-2xl hover:cursor-pointer hover:bg-gray-400' onClick={()=>handleDelete(item.outfit_id)}>delete</button>
+          <button className='bg-gray-600 px-2 py-1 rounded-2xl hover:cursor-pointer text-white hover:bg-gray-400' onClick={()=>handleWorn(item.outfit_id)}>mark as worn</button>
         </div>
       ))}
     </div>

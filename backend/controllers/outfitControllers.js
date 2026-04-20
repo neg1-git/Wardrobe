@@ -51,7 +51,7 @@ const getOutfits=async(req,res)=>{
   const id=req.user;
 try {
 
-  const result= await db.query('select * from outfit_items oi JOIN clothing_items c ON oi.clothing_item_id = c.id JOIN outfits o ON oi.outfit_id = o.id where o.user_id=$1',[id])
+  const result= await db.query('select o.id as outfit_id, o.name, array_agg(c.name) as clothes, o.wear_count, o.last_worn_date,o.is_favorite from outfit_items oi JOIN clothing_items c ON oi.clothing_item_id = c.id JOIN outfits o ON oi.outfit_id = o.id where o.user_id=$1 group by o.id, o.name, o.wear_count, o.last_worn_date, o.is_favorite',[id])
 
   return res.status(200).json({success:true,data:result.rows})
   
