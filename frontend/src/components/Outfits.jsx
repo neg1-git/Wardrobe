@@ -53,6 +53,22 @@ const ViewOutfits = () => {
     }
   }
 
+  const handleFav=async (id)=>{
+    try {
+      const res = await axios.patch(`http://localhost:5000/outfit/${id}/favorite`,{},
+        {
+        headers: {
+          token: localStorage.getItem("token")
+        }
+      })
+
+      getOutfits();
+      
+    } catch (error) {
+      console.log(error.response?.data || error.message)
+    }
+  }
+
   useEffect(() => {
     getOutfits()
   }, [])
@@ -61,11 +77,15 @@ const ViewOutfits = () => {
     <div className='p-4'>
       <a className='text-blue-800 hover:cursor-pointer text-sm' onClick={()=>nav('/add-outfits')}>add outfits</a>
       {data.map((item, index) => (
-        <div key={index} className='p-2 border mb-2'>
+        <div key={item.outfit_id} className='p-2 border mb-2'>
           <p><b>Outfit:</b> {item.name}</p>
           <div><b>Clothing:</b> {item.clothes.map((cloth)=>(<p>{cloth}</p>))}</div>
+          <p><b>wear count:</b> {item.wear_count}</p>
+          <p><b>last worn:</b> {item.last_worn_date}</p>
           <button className='bg-red-600 px-2 py-1 rounded-2xl hover:cursor-pointer hover:bg-gray-400' onClick={()=>handleDelete(item.outfit_id)}>delete</button>
           <button className='bg-gray-600 px-2 py-1 rounded-2xl hover:cursor-pointer text-white hover:bg-gray-400' onClick={()=>handleWorn(item.outfit_id)}>mark as worn</button>
+          <input className='mx-2' onChange={()=>handleFav(item.outfit_id)} type="checkbox" checked={item.is_favorite} name="isFav" id={item.outfit_id} />
+          fav
         </div>
       ))}
     </div>
