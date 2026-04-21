@@ -9,6 +9,7 @@ import UpdateItems from './components/Updateitems'
 import AddOutfits from './components/AddOutfits'
 import AddItemsToOutfits from './components/AddItemsToOutfits'
 import ViewOutfits from './components/Outfits'
+import Insights from './components/Insights'
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
       <Route path='login' element={<Login/>}/>
       <Route path='wardrobe' element={<Wardrobe/>}/>
       <Route path='outfits' element={<ViewOutfits/>}/>
+      <Route path='insights' element={<Insights/>}/>
       <Route path='add-items' element={<Additems/>}/>
       <Route path='add-outfits' element={<AddOutfits/>}/>
       <Route path='add-outfit-items/:id' element={<AddItemsToOutfits/>}/>
