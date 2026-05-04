@@ -24,7 +24,7 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="py-4 px-4 sm:px-6 mx-7 mt-10 rounded-3xl md:rounded-4xl" style={{ background: 'linear-gradient(135deg, #7856FF 0%, #FF36A2 100%)' }}>
+    <nav className="py-4 px-4 sm:px-6 mx-7 mt-8 rounded-3xl md:rounded-4xl" style={{ background: 'linear-gradient(135deg, #7856FF 0%, #FF36A2 100%)' }}>
       <div className="max-w-7xl mx-auto">
         {/* Desktop Navbar */}
         <div className="hidden sm:flex justify-between items-center">

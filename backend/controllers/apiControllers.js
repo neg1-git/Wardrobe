@@ -57,7 +57,7 @@ const updateItem=async(req,res)=>{
     if(!check.rows[0]){
       return res.status(404).json({success:false,msg:'ITEM DOESNT EXIST'})
     }
-    
+
     if(userId!==check.rows[0].user_id){
       return res.status(403).json({success:false,msg:'NOT AUTHORISED!!!'})
     }else{
@@ -65,7 +65,7 @@ const updateItem=async(req,res)=>{
 
       return res.status(200).json({success:true,data:result.rows[0]})
     }
-    
+
   } catch (error) {
     return res.status(500).json({success:false,msg:'SERVER ERROR'})
   }

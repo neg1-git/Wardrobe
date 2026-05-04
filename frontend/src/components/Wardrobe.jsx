@@ -48,13 +48,13 @@ const Wardrobe = () => {
             <p key={item.color}>{item.color}</p>
             <p key={item.category}>{item.category}</p>
             <button onClick={()=>handleDelete(item.id)} className='bg-white cursor-pointer'>delete</button>
-            <button onClick={() => nav(`/update/${item.id}`)}>
+            <button onClick={() => nav(`/app/update/${item.id}`)}>
       Update
             </button>
         </div>
         ))}
       </div>
-      <button onClick={()=>nav('/add-items')} className='bg-red-600 text-white p-2 mx-1 cursor-pointer'>Add Items</button>
+      <button onClick={()=>nav('/app/add-items')} className='bg-red-600 text-white p-2 mx-1 cursor-pointer'>Add Items</button>
     </div>
   )
 }
