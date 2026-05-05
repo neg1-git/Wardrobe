@@ -75,7 +75,7 @@ const ViewOutfits = () => {
 
   return (
     <div className='p-4'>
-      <a className='text-blue-800 hover:cursor-pointer text-sm' onClick={()=>nav('/add-outfits')}>add outfits</a>
+      <a className='text-blue-800 hover:cursor-pointer text-sm' onClick={()=>nav('/app/add-outfits')}>add outfits</a>
       {data.map((item, index) => (
         <div key={item.outfit_id} className='p-2 border mb-2'>
           <p><b>Outfit:</b> {item.name}</p>
