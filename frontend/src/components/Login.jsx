@@ -37,10 +37,10 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #7856FF 0%, #FF36A2 100%)' }}>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-linear-to-br from-[#7856FF] to-[#FF36A2]">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4" style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255, 255, 255, 0.3)' }}>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 bg-white/20 backdrop-blur-xl border border-white/30">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
             </svg>
@@ -49,11 +49,11 @@ const Login = () => {
           <p className="text-white/80 mt-2">Your personal style companion</p>
         </div>
 
-        <div className="p-8" style={{ background: 'rgba(255, 255, 255, 0.15)', backdropFilter: 'blur(24px)', borderRadius: '32px', border: '1px solid rgba(255, 255, 255, 0.3)' }}>
+        <div className="p-8 bg-white/15 backdrop-blur-xl rounded-4xl border border-white/30">
           <h2 className="text-2xl font-semibold text-white mb-6">Welcome back</h2>
 
           {error && (
-            <div className="mb-4 p-3 rounded-xl text-sm" style={{ background: 'rgba(255, 100, 100, 0.3)', border: '1px solid rgba(255, 100, 100, 0.5)' }}>
+            <div className="mb-4 p-3 rounded-xl text-sm bg-red-400/30 border border-red-400/50">
               {error}
             </div>
           )}
@@ -67,8 +67,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200"
-                style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.2)' }}
+                className="w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 bg-white/10 border border-white/20"
               />
             </div>
 
@@ -80,16 +79,14 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200"
-                style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.2)' }}
+                className="w-full px-4 py-3 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 bg-white/10 border border-white/20"
               />
             </div>
 
             <button
               onClick={handleLogin}
               disabled={isLoading}
-              className="w-full py-3.5 px-4 text-white font-medium rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255, 255, 255, 0.4)' }}
+              className="w-full py-3.5 px-4 text-white font-medium rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98] bg-white/25 backdrop-blur-xl border border-white/40"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -106,15 +103,14 @@ const Login = () => {
           </div>
 
           <div className="flex items-center my-6">
-            <div className="flex-1 border-t" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}></div>
+            <div className="flex-1 border-t border-white/20"></div>
             <span className="px-4 text-sm text-white/60">or</span>
-            <div className="flex-1 border-t" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}></div>
+            <div className="flex-1 border-t border-white/20"></div>
           </div>
 
           <button
             onClick={() => nav('/register')}
-            className="w-full py-3.5 px-4 text-white font-medium rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-            style={{ background: '#3B82F6', border: '1px solid #2563EB' }}
+            className="w-full py-3.5 px-4 text-white font-medium rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-[#3B82F6] border border-[#2563EB]"
           >
             Create account
           </button>
