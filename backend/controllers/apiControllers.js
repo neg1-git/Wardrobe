@@ -2,11 +2,11 @@ const db = require('../config/db')
 
 const addItems = async(req,res)=>{
 
-  let {name,category,color,image_url}=req.body;
+  let {name,category,color,image_url,cost}=req.body;
   let user_id=req.user;
 
   try {
-    const result = await db.query('insert into clothing_items(user_id,name,category,color,image_url) values($1,$2,$3,$4,$5) returning *',[user_id,name,category,color,image_url])
+    const result = await db.query('insert into clothing_items(user_id,name,category,color,image_url,cost) values($1,$2,$3,$4,$5,$6) returning *',[user_id,name,category,color,image_url,cost])
 
     return res.status(200).json({success:true,msg:result.rows[0]})
   } catch (error) {
@@ -48,7 +48,7 @@ const deleteItem=async(req,res)=>{
 }
 
 const updateItem=async(req,res)=>{
-  let {name,category,color,image_url}=req.body;
+  let {name,category,color,image_url,cost}=req.body;
   const {id}=req.params;
   const userId=req.user;
   try {
@@ -61,7 +61,7 @@ const updateItem=async(req,res)=>{
     if(userId!==check.rows[0].user_id){
       return res.status(403).json({success:false,msg:'NOT AUTHORISED!!!'})
     }else{
-      const result=await db.query('update clothing_items set name=$1, category=$2, color=$3, image_url=$4 where id=$5 returning *',[name,category,color,image_url,id])
+      const result=await db.query('update clothing_items set name=$1, category=$2, color=$3, image_url=$4, cost=$5 where id=$6 returning *',[name,category,color,image_url,cost,id])
 
       return res.status(200).json({success:true,data:result.rows[0]})
     }
