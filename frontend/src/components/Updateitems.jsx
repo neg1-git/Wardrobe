@@ -6,6 +6,7 @@ const UpdateItems = () => {
   const [name, setName] = useState('')
   const [category, setCategory] = useState('')
   const [color, setColor] = useState('')
+  const [cost, setCost] = useState('')
   const [image_url, setImgUrl] = useState('')
 
   const [image, setImage] = useState(null);
@@ -29,6 +30,7 @@ const UpdateItems = () => {
         setName(item.name || '')
         setCategory(item.category || '')
         setColor(item.color || '')
+        setCost(item.cost || '')
         setImgUrl(item.image_url || '')
       } catch (error) {
         console.log(error.response?.data || error.message)
@@ -57,7 +59,8 @@ const UpdateItems = () => {
           name,
           category,
           color,
-          image_url
+          image_url,
+          cost: cost ? parseFloat(cost) : null
         },
         {
           headers: {
@@ -181,6 +184,19 @@ const UpdateItems = () => {
                 placeholder="Blue, Black, White, etc."
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200 bg-gray-50 border border-gray-200 focus:border-purple-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Cost (optional)</label>
+              <input
+                type="number"
+                placeholder="29.99"
+                value={cost}
+                onChange={(e) => setCost(e.target.value)}
+                step="0.01"
+                min="0"
                 className="w-full px-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200 bg-gray-50 border border-gray-200 focus:border-purple-500"
               />
             </div>
