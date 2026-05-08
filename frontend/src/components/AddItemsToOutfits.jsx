@@ -24,7 +24,7 @@ const AddItemsToOutfits = () => {
 
   const getItems = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/api/wardrobe', {
+      const result = await axios.get('https://wardrobe-backend-sandy.vercel.app/api/wardrobe', {
         headers: {
           token: localStorage.getItem("token")
         }
@@ -50,7 +50,7 @@ const AddItemsToOutfits = () => {
     setError('')
 
     try {
-      const res = await axios.post('http://localhost:5000/outfit/add', {
+      const res = await axios.post('https://wardrobe-backend-sandy.vercel.app/outfit/add', {
         outfit_id,
         clothing_item_id
       }, {

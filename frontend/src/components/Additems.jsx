@@ -29,7 +29,7 @@ const Additems = () => {
     setError('');
 
     try {
-      const res=await axios.post('http://localhost:5000/api/clothes',
+      const res=await axios.post('https://wardrobe-backend-sandy.vercel.app/api/clothes',
     {
       name,
       category,

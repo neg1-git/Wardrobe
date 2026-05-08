@@ -11,7 +11,7 @@ const ViewOutfits = () => {
 
   const getOutfits = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/outfit/get-outfits', {
+      const res = await axios.get('https://wardrobe-backend-sandy.vercel.app/outfit/get-outfits', {
         headers: {
           token: localStorage.getItem("token")
         }
@@ -35,7 +35,7 @@ const ViewOutfits = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/outfit/delete/${id}`, {
+      const res = await axios.delete(`https://wardrobe-backend-sandy.vercel.app/outfit/delete/${id}`, {
         headers: {
           token: localStorage.getItem("token")
         }
@@ -48,7 +48,7 @@ const ViewOutfits = () => {
 
   const handleWorn = async (id) => {
     try {
-      const res = await axios.post(`http://localhost:5000/outfit/${id}/wear`,
+      const res = await axios.post(`https://wardrobe-backend-sandy.vercel.app/outfit/${id}/wear`,
         {},
         {
           headers: {
@@ -65,7 +65,7 @@ const ViewOutfits = () => {
 
   const handleFav = async (id) => {
     try {
-      const res = await axios.patch(`http://localhost:5000/outfit/${id}/favorite`, {},
+      const res = await axios.patch(`https://wardrobe-backend-sandy.vercel.app/outfit/${id}/favorite`, {},
         {
           headers: {
             token: localStorage.getItem("token")

@@ -11,7 +11,7 @@ const Wardrobe = () => {
   const getItems=async()=>{
     try {
       
-      const res= await axios.get('http://localhost:5000/api/wardrobe',{headers: {
+      const res= await axios.get('https://wardrobe-backend-sandy.vercel.app/api/wardrobe',{headers: {
   token:localStorage.getItem("token")
 }})
   const data = res.data.data
@@ -29,7 +29,7 @@ const Wardrobe = () => {
 
   const handleDelete=async(id)=>{
     try {
-      const res= await axios.delete('http://localhost:5000/api/wardrobe/'+id,{headers: {
+      const res= await axios.delete('https://wardrobe-backend-sandy.vercel.app/api/wardrobe/'+id,{headers: {
   token:localStorage.getItem("token")
 }})
       console.log(res.data)

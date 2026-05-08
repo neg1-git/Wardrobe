@@ -32,7 +32,7 @@ const Register = () => {
     setError('')
 
     try {
-      const res = await axios.post('http://localhost:5000/auth/register', {
+      const res = await axios.post('https://wardrobe-backend-sandy.vercel.app/auth/register', {
         name,
         email,
         password,

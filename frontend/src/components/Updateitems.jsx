@@ -23,7 +23,7 @@ const UpdateItems = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/wardrobe/${id}`, {
+        const res = await axios.get(`https://wardrobe-backend-sandy.vercel.app/api/wardrobe/${id}`, {
           headers: { token: localStorage.getItem("token") }
         })
         const item = res.data.data
@@ -54,7 +54,7 @@ const UpdateItems = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/wardrobe/${id}`,
+        `https://wardrobe-backend-sandy.vercel.app/api/wardrobe/${id}`,
         {
           name,
           category,

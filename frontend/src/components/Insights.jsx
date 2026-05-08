@@ -10,7 +10,7 @@ const Insights = () => {
 
   const getInsights = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/outfit/insights', {
+      const result = await axios.get('https://wardrobe-backend-sandy.vercel.app/outfit/insights', {
         headers: {
           token: localStorage.getItem("token")
         }
@@ -25,7 +25,7 @@ const Insights = () => {
 
   const getRecommendations = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/outfit/recommendations', {
+      const result = await axios.get('https://wardrobe-backend-sandy.vercel.app/outfit/recommendations', {
         headers: {
           token: localStorage.getItem("token")
         }
@@ -41,7 +41,7 @@ const Insights = () => {
 
   const getCostInsights = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/api/cost-insights', {
+      const result = await axios.get('https://wardrobe-backend-sandy.vercel.app/api/cost-insights', {
         headers: {
           token: localStorage.getItem("token")
         }
