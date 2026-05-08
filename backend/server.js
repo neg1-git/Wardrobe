@@ -13,6 +13,14 @@ app.use('/auth',authRoutes)
 app.use('/api',apiRoutes)
 app.use('/outfit',outfitRoutes)
 
-app.listen(5000,()=>{
-  console.log('Server is listening at 5000...')
-})
+// app.listen(5000,()=>{
+//   console.log('Server is listening at 5000...')
+// })
+
+module.exports = app
+
+if (require.main === module) {
+  app.listen(5000, () => {
+    console.log('Server is listening at 5000...')
+  })
+}
