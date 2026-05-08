@@ -109,12 +109,12 @@ const Wardrobe = () => {
                     <div className="mb-3 sm:mb-4 space-y-1">
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-gray-500">Cost:</span>
-                        <span className="text-sm font-semibold text-green-600">${parseFloat(item.cost).toFixed(2)}</span>
+                        <span className="text-sm font-semibold text-green-600">₹{parseFloat(item.cost).toFixed(2)}</span>
                       </div>
                       {item.total_wears > 0 && item.cost_per_wear && (
                         <div className="flex items-center justify-between">
                           <span className="text-xs text-gray-500">Cost per wear:</span>
-                          <span className="text-sm font-semibold text-purple-600">${parseFloat(item.cost_per_wear).toFixed(2)}</span>
+                          <span className="text-sm font-semibold text-purple-600">₹{parseFloat(item.cost_per_wear).toFixed(2)}</span>
                         </div>
                       )}
                       {item.total_wears > 0 && (

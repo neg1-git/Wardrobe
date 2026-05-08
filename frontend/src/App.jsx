@@ -12,6 +12,7 @@ import ViewOutfits from './components/Outfits'
 import Insights from './components/Insights'
 import PrivateLayout from './components/PrivateLayout'
 import Dashboard from './components/Dashboard'
+import LandingPage from './components/LandingPage'
 
 const App = () => {
 
@@ -20,7 +21,7 @@ const App = () => {
     <Route path='/' element={<Layout/>}>
       <Route path='register' element={<Register/>}/>
       <Route path='login' element={<Login/>}/>
-      <Route path='/' element={<Dashboard/>}/>
+      <Route path='/' element={<LandingPage/>}/>
       <Route path='app' element={<PrivateLayout/>}>
         <Route path='wardrobe' element={<Wardrobe/>}/>
         <Route path='outfits' element={<ViewOutfits/>}/>

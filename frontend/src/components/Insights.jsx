@@ -156,7 +156,7 @@ const Insights = () => {
                 </div>
                 <span className="text-sm text-gray-600">Total Wardrobe Value</span>
               </div>
-              <p className="text-2xl font-bold text-gray-800">${parseFloat(costData?.totalWardrobeValue || 0).toFixed(2)}</p>
+              <p className="text-2xl font-bold text-gray-800">₹{parseFloat(costData?.totalWardrobeValue || 0).toFixed(2)}</p>
             </div>
 
             <div className="bg-linear-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 shadow-lg border border-blue-100">
@@ -169,7 +169,7 @@ const Insights = () => {
                 <span className="text-sm text-gray-600">Most Expensive Item</span>
               </div>
               <p className="text-lg font-semibold text-gray-800">{costData?.mostExpensive?.[0]?.name || 'No data'}</p>
-              <p className="text-sm text-gray-600">${parseFloat(costData?.mostExpensive?.[0]?.cost || 0).toFixed(2)}</p>
+              <p className="text-sm text-gray-600">₹{parseFloat(costData?.mostExpensive?.[0]?.cost || 0).toFixed(2)}</p>
             </div>
 
             <div className="bg-linear-to-br from-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg border border-purple-100">
@@ -182,7 +182,7 @@ const Insights = () => {
                 <span className="text-sm text-gray-600">Best Value Item</span>
               </div>
               <p className="text-lg font-semibold text-gray-800">{costData?.bestValue?.[0]?.name || 'No data'}</p>
-              <p className="text-sm text-gray-600">${parseFloat(costData?.bestValue?.[0]?.cost_per_wear || 0).toFixed(2)}/wear</p>
+              <p className="text-sm text-gray-600">₹{parseFloat(costData?.bestValue?.[0]?.cost_per_wear || 0).toFixed(2)}/wear</p>
             </div>
           </div>
 
@@ -203,7 +203,7 @@ const Insights = () => {
                         <p className="font-medium text-gray-800">{item.name}</p>
                         <p className="text-sm text-gray-500">{item.category}</p>
                       </div>
-                      <span className="text-sm font-semibold text-blue-600">${parseFloat(item.cost || 0).toFixed(2)}</span>
+                      <span className="text-sm font-semibold text-blue-600">₹{parseFloat(item.cost || 0).toFixed(2)}</span>
                     </div>
                   ))}
                 </div>
@@ -229,8 +229,8 @@ const Insights = () => {
                         <p className="text-sm text-gray-500">{item.category} • {item.total_wears} wears</p>
                       </div>
                       <div className="text-right">
-                        <span className="text-sm font-semibold text-purple-600">${parseFloat(item.cost_per_wear || 0).toFixed(2)}/wear</span>
-                        <p className="text-xs text-gray-500">${parseFloat(item.cost || 0).toFixed(2)} total</p>
+                        <span className="text-sm font-semibold text-purple-600">₹{parseFloat(item.cost_per_wear || 0).toFixed(2)}/wear</span>
+                        <p className="text-xs text-gray-500">₹{parseFloat(item.cost || 0).toFixed(2)} total</p>
                       </div>
                     </div>
                   ))}
