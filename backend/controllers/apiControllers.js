@@ -17,7 +17,21 @@ const addItems = async(req,res)=>{
 const getItems= async(req,res)=>{
   let user_id=req.user
   try {
-    const result=await db.query('Select * from clothing_items where user_id=$1 ORDER BY created_at DESC',[user_id])
+    const result=await db.query(`
+      SELECT ci.*,
+             COALESCE(SUM(o.wear_count), 0) as total_wears,
+             CASE
+               WHEN ci.cost IS NULL OR ci.cost = 0 THEN NULL
+               WHEN COALESCE(SUM(o.wear_count), 0) = 0 THEN ci.cost
+               ELSE ROUND(ci.cost / SUM(o.wear_count), 2)
+             END as cost_per_wear
+      FROM clothing_items ci
+      LEFT JOIN outfit_items oi ON ci.id = oi.clothing_item_id
+      LEFT JOIN outfits o ON oi.outfit_id = o.id AND o.user_id = $1
+      WHERE ci.user_id = $1
+      GROUP BY ci.id, ci.name, ci.category, ci.color, ci.image_url, ci.cost, ci.user_id, ci.created_at
+      ORDER BY ci.created_at DESC
+    `,[user_id])
     return res.status(200).json({success:true,data:result.rows})
   } catch (error) {
     return res.status(500).json({success:false,msg:'SERVER ERROR'})

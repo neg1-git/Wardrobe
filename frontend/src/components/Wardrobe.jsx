@@ -95,7 +95,7 @@ const Wardrobe = () => {
 
                 <div className="p-3 sm:p-4">
                   <h3 className="font-semibold text-gray-800 text-base sm:text-lg mb-1 sm:mb-2 truncate">{item.name}</h3>
-                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                  <div className="flex items-center gap-2 mb-2 sm:mb-3">
                     <div
                       className="w-4 h-4 rounded-full border-2 border-gray-200"
                       style={{ backgroundColor: item.color.toLowerCase() }}
@@ -103,6 +103,28 @@ const Wardrobe = () => {
                     />
                     <span className="text-sm text-gray-600 capitalize">{item.color}</span>
                   </div>
+
+                  {/* Cost Information */}
+                  {item.cost && (
+                    <div className="mb-3 sm:mb-4 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-500">Cost:</span>
+                        <span className="text-sm font-semibold text-green-600">${parseFloat(item.cost).toFixed(2)}</span>
+                      </div>
+                      {item.total_wears > 0 && item.cost_per_wear && (
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-gray-500">Cost per wear:</span>
+                          <span className="text-sm font-semibold text-purple-600">${parseFloat(item.cost_per_wear).toFixed(2)}</span>
+                        </div>
+                      )}
+                      {item.total_wears > 0 && (
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-gray-500">Times worn:</span>
+                          <span className="text-sm font-medium text-gray-700">{item.total_wears}x</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   <div className="flex gap-2">
                     <button
