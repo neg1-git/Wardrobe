@@ -1,9 +1,6 @@
 const Groq = require('groq-sdk')
 const db = require('../config/db')
 
-// Initialize Groq client
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
-
 /**
  * GET /api/ai/shopping-plan
  *
@@ -14,6 +11,15 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
  */
 const getShoppingPlan = async (req, res) => {
   const userId = req.user
+
+  const apiKey = process.env.GROQ_API_KEY
+  if (!apiKey) {
+    return res.status(500).json({
+      success: false,
+      msg: 'AI service is not configured. Please set the GROQ_API_KEY environment variable.'
+    })
+  }
+  const groq = new Groq({ apiKey })
 
   try {
     // 1. Fetch user's closet inventory with wear details

@@ -1,9 +1,6 @@
 const Groq = require('groq-sdk')
 const db = require('../config/db')
 
-// Initialize the Groq client
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
-
 /**
  * Build a system instruction grounded in the user's live wardrobe data.
  * This is the "context engineering" step — we query PostgreSQL and serialize
@@ -47,6 +44,16 @@ const chatWithCloset = async (req, res) => {
   if (!message || typeof message !== 'string' || message.trim() === '') {
     return res.status(400).json({ success: false, msg: 'Message is required.' })
   }
+
+  const apiKey = process.env.GROQ_API_KEY
+  if (!apiKey) {
+    return res.status(500).json({
+      success: false,
+      msg: 'AI service is not configured. Please set the GROQ_API_KEY environment variable.',
+    })
+  }
+
+  const groq = new Groq({ apiKey })
 
   try {
     // Step 1: Query the user's wardrobe with wear analytics
