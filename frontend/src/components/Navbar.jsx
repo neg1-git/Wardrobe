@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FiMenu, FiX, FiUser, FiLogOut, FiHome, FiLayers, FiGrid, FiShoppingCart } from "react-icons/fi"
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 const Navbar = () => {
@@ -38,14 +38,14 @@ const Navbar = () => {
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.href
                 return (
-                  <a
+                  <Link
                     key={link.href}
-                    href={link.href}
+                    to={link.href}
                     className="flex items-center gap-2 px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-200 hover:scale-105"
                   >
                     <link.icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-white/60'}`} />
                     <span className={`font-medium ${isActive ? 'text-white' : 'text-white/80'}`}>{link.label}</span>
-                  </a>
+                  </Link>
                 )
               })}
             </div>
@@ -91,14 +91,14 @@ const Navbar = () => {
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.href
                 return (
-                  <a
+                  <Link
                     key={link.href}
-                    href={link.href}
+                    to={link.href}
                     className="flex items-center gap-3 px-4 py-3 rounded-lg text-white/90 hover:text-white transition-all duration-200 hover:scale-105"
                   >
                     <link.icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-white/60'}`} />
                     <span className={`font-medium ${isActive ? 'text-white' : 'text-white/80'}`}>{link.label}</span>
-                  </a>
+                  </Link>
                 )
               })}
               <div className="h-px my-3" style={{ background: 'rgba(255, 255, 255, 0.2)' }}></div>
