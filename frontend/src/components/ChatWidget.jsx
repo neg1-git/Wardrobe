@@ -2,7 +2,9 @@ import React, { useState, useRef, useEffect } from 'react'
 import { FiMessageCircle, FiX, FiSend } from 'react-icons/fi'
 import axios from 'axios'
 
-const API_BASE = 'http://localhost:5000'
+const API_BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:5000'
+  : 'https://wardrobe-backend-sandy.vercel.app'
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false)
