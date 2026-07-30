@@ -13,6 +13,7 @@ import Insights from './components/Insights'
 import PrivateLayout from './components/PrivateLayout'
 import Dashboard from './components/Dashboard'
 import LandingPage from './components/LandingPage'
+import ShoppingPlanner from './components/ShoppingPlanner'
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='wardrobe' element={<Wardrobe/>}/>
         <Route path='outfits' element={<ViewOutfits/>}/>
         <Route path='insights' element={<Insights/>}/>
+        <Route path='shopping-planner' element={<ShoppingPlanner/>}/>
         <Route path='add-items' element={<Additems/>}/>
         <Route path='add-outfits' element={<AddOutfits/>}/>
         <Route path='add-outfit-items/:id' element={<AddItemsToOutfits/>}/>

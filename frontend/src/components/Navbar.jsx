@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FiMenu, FiX, FiUser, FiLogOut, FiHome, FiLayers, FiGrid } from "react-icons/fi"
+import { FiMenu, FiX, FiUser, FiLogOut, FiHome, FiLayers, FiGrid, FiShoppingCart } from "react-icons/fi"
 import { useNavigate, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
@@ -20,7 +20,8 @@ const Navbar = () => {
   const navLinks = [
     { href: "/app/insights", label: "Insights", icon: FiGrid },
     { href: "/app/wardrobe", label: "Wardrobe", icon: FiLayers },
-    { href: "/app/outfits", label: "Outfits", icon: FiHome }
+    { href: "/app/outfits", label: "Outfits", icon: FiHome },
+    { href: "/app/shopping-planner", label: "AI Shopping", icon: FiShoppingCart }
   ]
 
   return (
