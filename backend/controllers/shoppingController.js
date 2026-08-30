@@ -106,8 +106,16 @@ Response Schema:
     
     // Strip Qwen's <think>...</think> reasoning tags
     rawResponse = rawResponse.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
-    // Strip markdown code fences if present (e.g., ```json ... ```)
-    rawResponse = rawResponse.replace(/```json\s*/gi, '').replace(/```\s*/gi, '').trim()
+    
+    // Attempt to extract just the JSON object from the response string
+    const firstBrace = rawResponse.indexOf('{')
+    const lastBrace = rawResponse.lastIndexOf('}')
+    if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+      rawResponse = rawResponse.substring(firstBrace, lastBrace + 1)
+    } else {
+      // Fallback if no braces found
+      rawResponse = rawResponse.replace(/```json\s*/gi, '').replace(/```\s*/gi, '').trim()
+    }
 
     let planData
     try {
