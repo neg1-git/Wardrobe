@@ -95,7 +95,10 @@ const chatWithCloset = async (req, res) => {
       temperature: 0.5,
     })
 
-    const response = chatCompletion.choices[0]?.message?.content || ''
+    let response = chatCompletion.choices[0]?.message?.content || ''
+
+    // Strip Qwen's <think>...</think> reasoning tags — only show the final answer
+    response = response.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
 
     return res.status(200).json({
       success: true,

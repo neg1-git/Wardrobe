@@ -104,6 +104,8 @@ Response Schema:
 
     let rawResponse = completion.choices[0]?.message?.content || '{}'
     
+    // Strip Qwen's <think>...</think> reasoning tags
+    rawResponse = rawResponse.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
     // Strip markdown code fences if present (e.g., ```json ... ```)
     rawResponse = rawResponse.replace(/```json\s*/gi, '').replace(/```\s*/gi, '').trim()
 
