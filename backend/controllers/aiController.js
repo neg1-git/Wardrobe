@@ -91,7 +91,7 @@ const chatWithCloset = async (req, res) => {
     // Step 4: Send request to Groq completion endpoint
     const chatCompletion = await groq.chat.completions.create({
       messages: messages,
-      model: 'qwen/qwen3.6-27b',
+      model: 'llama-3.1-8b-instant',
       temperature: 0.5,
     })
 

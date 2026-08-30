@@ -98,7 +98,8 @@ Response Schema:
         { role: 'system', content: systemPrompt },
         { role: 'user', content: 'Analyze my closet and provide the structured JSON shopping plan.' }
       ],
-      model: 'qwen/qwen3.6-27b',
+      model: 'llama-3.1-8b-instant',
+      response_format: { type: "json_object" }, // Enforce JSON response format
       temperature: 0.3,
     })
 
