@@ -99,12 +99,24 @@ Response Schema:
         { role: 'user', content: 'Analyze my closet and provide the structured JSON shopping plan.' }
       ],
       model: 'qwen/qwen3.6-27b',
-      response_format: { type: "json_object" }, // Enforce JSON response format
       temperature: 0.3,
     })
 
-    const rawResponse = completion.choices[0]?.message?.content || '{}'
-    const planData = JSON.parse(rawResponse)
+    let rawResponse = completion.choices[0]?.message?.content || '{}'
+    
+    // Strip markdown code fences if present (e.g., ```json ... ```)
+    rawResponse = rawResponse.replace(/```json\s*/gi, '').replace(/```\s*/gi, '').trim()
+
+    let planData
+    try {
+      planData = JSON.parse(rawResponse)
+    } catch (parseErr) {
+      console.error('Failed to parse AI response as JSON:', rawResponse)
+      return res.status(500).json({
+        success: false,
+        msg: 'AI returned an invalid response. Please try again.'
+      })
+    }
 
     return res.status(200).json({
       success: true,
